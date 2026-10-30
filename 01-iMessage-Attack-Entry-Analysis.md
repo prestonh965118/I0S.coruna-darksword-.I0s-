@@ -1,3 +1,9 @@
+---
+title: "iMessage 为什么成为攻击入口：iOS 最高价值攻击面的深度解剖"
+description: "iMessage 成为 iOS 最高价值远程攻击入口的六个技术原因（自动处理管道、丰富的解析攻击面、端到端加密的双刃剑效应、全球覆盖与统一入口、反取证与痕迹清除、沙盒模型与攻击链设计）、从 TRIDENT 到 FORCEDENTRY、Operation Triangulation 与 BLASTPASS 的公开时间线、iMessage 降级攻击与 SMS 补充、Apple 的防御演变、锁定模式对攻击面的影响，以及关键术语表与 iMessage 相关 CVE 列表"
+lang: zh-CN
+---
+
 # iMessage 为什么成为攻击入口：iOS 最高价值攻击面的深度解剖
 
 - **报告日期**：2026-10-11

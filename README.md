@@ -2,6 +2,9 @@
 
 本仓库收录 iOS 系统安全防御分析报告，全部基于公开资料（Apple 官方文档与开源分发源码、Apple 安全公告、CISA KEV 目录）整理，不含可用的漏洞利用代码、提权或绕过步骤。
 
+在线站点（渲染后的正文主版本）：<https://ios-security-reports-0e8t10askpz.qoder.website/>
+- sitemap：<https://ios-security-reports-0e8t10askpz.qoder.website/sitemap.xml>
+
 | # | 报告 | 主题 |
 | --- | --- | --- |
 | 01 | [iMessage 为什么成为攻击入口](01-iMessage-Attack-Entry-Analysis.md) | 消息链路的攻击面与防御口径 |

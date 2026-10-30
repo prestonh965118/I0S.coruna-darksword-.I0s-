@@ -1,3 +1,9 @@
+---
+title: "iOS 系统生物识别安全机制全面防御分析"
+description: "以 Secure Enclave 为硬件信任根的生物识别体系：TrueDepth 深度传感与 Face ID、电容指纹与 Touch ID、Neural Engine 推理、生物密封密钥与密钥层级、LocalAuthentication 框架接口、活体检测与反欺骗、已知攻击面与公开案例、端侧闭环的隐私设计、设备证明与远程验证、防御策略与行业标准对比"
+lang: zh-CN
+---
+
 # iOS 系统生物识别安全机制全面防御分析
 
 ## 摘要

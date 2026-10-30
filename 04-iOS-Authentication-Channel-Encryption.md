@@ -1,3 +1,9 @@
+---
+title: "iOS 身份认证与通道加密全景分析"
+description: "iOS 认证链路与加密通道的分层视图：四层认证架构（生物识别、设备认证、应用认证、网络认证）、Face ID 与 Touch ID 机制、Secure Enclave、Keychain 钥匙串、TLS/SSL 通道加密、App Transport Security、OAuth 2.0 与 Token 认证、网络代理与 VPN、中间人防护、跨协议攻击与防御、漏洞案例与 CVE 索引"
+lang: zh-CN
+---
+
 # iOS身份认证与通道加密全景分析
 
 > 咨询ios系统请咨询 telegram：https://t.me/one00190

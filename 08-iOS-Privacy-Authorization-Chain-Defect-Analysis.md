@@ -1,3 +1,9 @@
+---
+title: "iOS 隐私授权链路与用途声明缺陷归属防御分析报告"
+description: "iOS 隐私授权链路的十层表面分解：Info.plist 用途声明键、PrivacyInfo.xcprivacy 与 required reason API、系统授权决策与崩溃形态、11 组框架授权状态机取值配对、部分授权与精度裁剪、授权持久化与变更、跨进程继承与传播、SDK 清单与装配、申报与审核口径、可观测与取证面；P1–P12 缺陷类型学、声明/框架状态机/申报三套词表、层 × 责任方 × 更新通道归属矩阵、四级判定模型与两个离线只读核验脚本"
+lang: zh-CN
+---
+
 # iOS 隐私授权链路与用途声明缺陷归属防御分析报告
 
 ## 摘要
@@ -116,6 +122,7 @@ iOS 的隐私机制在公开讨论里有三种讲法：开发者文档把它讲�
 - **缺口 C（申报侧页面不可得）**：App Store 的「App Privacy Details / user privacy and data use」、审核指南、以及「Upcoming third-party SDK requirements」三组页面对本机取回的是 JS 壳或 404，正文不可核对。因此第 13 章的申报口径**只引用开发者文档里可核对的句子**（尤其是《Describing use of required reason API》第 6 行的服务端规则句），不引用这些页面，也不转述其中的条款编号。
 
 最后，原文本身的拼写与格式异常一律保留原样并加注，本文不做"顺手修正"：《Protected resources》第 51 行的小节条目前缀里出现了双空格（`Choosing the  Location Services Authorization to Request`）；《NSPrivacyAccessedAPIType》在第 20 行与第 28 行对同一件事写了两种措辞（`supply the relevant values from this list` 与 `supply the relevant values from the list below`）。两处都不是本文的转录差异。
+
 ---
 
 ## 3. 三套词表：声明口径、框架状态机口径、申报口径
@@ -321,6 +328,7 @@ L2 最重要的一条规则不是结构规则而是**归属规则**，且它在�
 > "You need to include a privacy manifest file in your third-party SDK if it's listed in 'SDKs that require a privacy manifest and signature,' in Upcoming third-party SDK requirements. Otherwise, include a privacy manifest file in your third-party SDK if it uses a required reasons API, collects data about the person using apps that include the third-party SDK, enables the app to collect data about people using the app, or contacts tracking domains."
 
 前半句指向的那份「需要清单与签名的 SDK 名单」页面，本轮取回的是 JS 壳，正文不可核对（第 26 章缺口 C）。因此本文对"是否必须带清单"只使用后半句的四个条件（用了 required reason API / 收集使用者数据 / 使能 app 收集 / 联系追踪域名）——这四个条件全部可以在声明文本里做静态核对，而"是否在名单上"不能。这条限制直接决定了脚本一为什么对"无清单"只出边界声明 B03、不出违规。
+
 ---
 
 ## 6. L3 required reason 申报层
@@ -549,6 +557,7 @@ L5 的缺陷基本不是"app 写错了"，而是"app 读错了自己的读数"�
 - **不可区分误判**：在文档明写"两者同形"的地方做了区分性结论（D23 的 CL denied 二义、D24 的 HK 读侧、D28 的 ATT restricted）。这三条一律 3 级：它们是"读数不能支撑该结论"，不是"读数违规"。
 
 一个例外值得单独说明：`PH` 的 legacy 访问方式。PhotoKit 同时存在 `authorizationStatus()` 与 `authorizationStatus(for:)`，前者在存档里带 "Returns information about your app's authorization to access the user's photo library."（《PHAuthorizationStatus》第 19 行）这类不带 access level 描述的句子。台账若把 legacy 行的读数当成 readWrite 档的读数，脚本二按 D25（1 级）处理，因为这里存在确定的口径错配而不是语义不确定。
+
 ---
 
 ## 9. L6 部分授权与精度裁剪层
@@ -719,6 +728,7 @@ L8 与 L9 的分界在这里：SDK 不能替宿主申报、宿主也不能替 SD
 3. **给跨 app 取证划边界。** 指南第 5288 行那句"读不到别的 app 拿到了什么授权"意味着任何"设备上所有 app 的授权全景"类结论都不可能由 app 侧台账得出——第 17 章的可见性表里"第三方 app 的授权状态"一栏因此标为不可得。
 
 本文给 L8 的整体判定上限是 2 级：**这一层的静态证据能指出"读数口径混了"，不能指出"权限越界了"**。第 15 章的矩阵里 L8 那一行责任方写成"app（标注）+ 系统（效果）"两列，就是这个意思。
+
 ---
 
 ## 12. L9 SDK 清单与构建装配层
@@ -884,6 +894,7 @@ P12 ──阻断──> 其余全部（读不到时不做任何判定）
 ```
 
 这里最重要的一条是最后一条：P12 不是"第 12 类缺陷"，它是其余 11 类的前置条件。两个脚本遇到 P12 时都不继续产出判定（脚本一 E01–E03 后立即 `give_verdict` 并返回，脚本二同），这是本文与"报告一个分数就走"的扫描器最大的方法差异。
+
 ---
 
 ## 15. 归属矩阵：层 × 责任方 × 更新通道 × 证据
@@ -999,6 +1010,7 @@ P12 ──阻断──> 其余全部（读不到时不做任何判定）
 ### 17.3 本文两个脚本读者的位置
 
 脚本一与脚本二服务的是第二类读者（取证方/审计方），输入是**已经导出的声明文件与已经采集的台账**。它们不改变任何一侧的可得性，只把可得的那部分判定做完。这就是第 21、22 章每条边界声明（B 类输出）都存在的原因——它们标的是"这一格需要别的读者"。
+
 ---
 
 ## 18. 崩溃与日志读数侧
@@ -1165,6 +1177,7 @@ E 类走的是另一条路：脚本置一个"读数不可用"标志，判定环�
 1. **趋势只在同一脚本版本、同一输入格式内可比。** O5 的分母在 D17（category 重复）修复前后会变，O7 会先反映出台账导出器的改动，所以任何跨月比较必须同时带 `--quiet` 与否、输入文件名规则、脚本版本三项。
 2. **没有指标覆盖"申报与真实行为一致"。** 第 6.3、6.5 节已经说明这件事在离线口径里不可判，O5 与 O6 都只是申报文本的内部一致性，把它们当作合规率上报是一个具体形态的误报（第 24 章误区条目对应）。
 3. **指标必须能追到码位。** 每个指标的分子都由固定码位集合构成，这是本文愿意给出这些定义的前提：任何一个不能用〈码位集合，分母口径〉写出来的指标，本文不给出定义，也不建议使用。
+
 ---
 
 ## 21. 只读核验脚本一：声明口径审查器
@@ -2173,6 +2186,7 @@ E01 这一支不能用 `chmod 000` 在 Windows 上验证——那里的权限位
 ### 23.6 复现步骤
 
 三步，全部离线：把两个脚本与 `.x8-fx/` 目录放在同一父目录下，运行 `bash .x8-fx/run-accept.sh`；比对新生成的 `ACCEPT.txt` 与随报告发布的记录；如需只看码位，用 `-q` 单独跑任一夹具。脚本对输入文件只读打开，运行前后输入的字节序列不变，这也是第 21.1、22.1 节"只读"承诺的可检验部分（第 27 章结论把这条列为本文唯一的自我验证方式）。
+
 ---
 
 ## 24. 十二个误区

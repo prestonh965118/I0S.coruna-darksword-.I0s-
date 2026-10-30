@@ -1,3 +1,9 @@
+---
+title: "iOS 访问控制与应用层交互限制 — 防御性安全深度分析"
+description: "iOS 访问控制的机制与限制面：沙箱机制、Entitlements 权限体系、Keychain 访问控制、Data Protection 文件加密、App Sandbox 文件系统隔离、URL Scheme 与跨应用通信、Universal Links、App Groups 共享数据、剪贴板访问限制、后台任务、通知与推送、Accessibility API、App Extension 架构、第三方 SDK 访问控制审计、IPC 攻击面、与 Android 的对比、防御加固清单与合规要求"
+lang: zh-CN
+---
+
 # iOS 访问控制与应用层交互限制 — 防御性安全深度分析
 
 > **版本**: 1.0 | **日期**: 2026-10-11  
