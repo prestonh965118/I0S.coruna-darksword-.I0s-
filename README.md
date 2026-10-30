@@ -10,5 +10,6 @@
 | 04 | [iOS 身份认证与通道加密](04-iOS-Authentication-Channel-Encryption.md) | 认证链路与加密通道全景 |
 | 05 | [iOS 系统生物识别安全机制](05-iOS-Biometric-Security-Mechanisms.md) | 生物识别的机制、边界与取证口径 |
 | 06 | [iOS XPC 与 Mach IPC 系统服务缺陷归属防御分析](06-iOS-XPC-and-Mach-IPC-System-Service-Defect-Analysis.md) | 十层 Mach IPC 表面、X1–X12 缺陷类型学、层 × 责任 × 更新通道归属矩阵、四级判定模型与两个离线只读核验脚本 |
+| 07 | [iOS APNs 推送通知投递链路缺陷归属防御分析](07-iOS-APNs-Push-Delivery-Chain-Defect-Analysis.md) | 十层推送投递表面、N1–N12 缺陷类型学、层 × 责任方 × 更新通道归属矩阵、文档口径与公告口径两套词表、四级判定模型与两个离线只读核验脚本 |
 
 Contact: telegram https://t.me/one00190
