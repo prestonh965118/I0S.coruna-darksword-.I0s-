@@ -15,5 +15,6 @@
 | 06 | [iOS XPC 与 Mach IPC 系统服务缺陷归属防御分析](06-iOS-XPC-and-Mach-IPC-System-Service-Defect-Analysis.md) | 十层 Mach IPC 表面、X1–X12 缺陷类型学、层 × 责任 × 更新通道归属矩阵、四级判定模型与两个离线只读核验脚本 |
 | 07 | [iOS APNs 推送通知投递链路缺陷归属防御分析](07-iOS-APNs-Push-Delivery-Chain-Defect-Analysis.md) | 十层推送投递表面、N1–N12 缺陷类型学、层 × 责任方 × 更新通道归属矩阵、文档口径与公告口径两套词表、四级判定模型与两个离线只读核验脚本 |
 | 08 | [iOS 隐私授权链路与用途声明缺陷归属防御分析](08-iOS-Privacy-Authorization-Chain-Defect-Analysis.md) | 十层授权链路表面、P1–P12 缺陷类型学、声明口径/框架状态机口径/申报口径三套词表、层 × 责任方 × 更新通道归属矩阵、四级判定模型与两个离线只读核验脚本 |
+| 09 | [iOS 更新链与补丁传导归属防御分析](09-iOS-Update-Chain-Patch-Propagation-Attribution-Analysis.md) | 十层更新链路表面（公告与 CSAF、版本目录与签名时效、安装授权、分发形态、整版本与 Background Security Improvements、MDM 延期、声明式强制、状态回执、回滚与移除、外设旁路）、P1–P12 缺陷类型学、三套词表与七处换算失败、归属矩阵、18 条公开读数、四级判定模型与两个离线只读核验脚本 |
 
 Contact: telegram https://t.me/one00190
