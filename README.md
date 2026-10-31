@@ -16,5 +16,6 @@
 | 07 | [iOS APNs 推送通知投递链路缺陷归属防御分析](07-iOS-APNs-Push-Delivery-Chain-Defect-Analysis.md) | 十层推送投递表面、N1–N12 缺陷类型学、层 × 责任方 × 更新通道归属矩阵、文档口径与公告口径两套词表、四级判定模型与两个离线只读核验脚本 |
 | 08 | [iOS 隐私授权链路与用途声明缺陷归属防御分析](08-iOS-Privacy-Authorization-Chain-Defect-Analysis.md) | 十层授权链路表面、P1–P12 缺陷类型学、声明口径/框架状态机口径/申报口径三套词表、层 × 责任方 × 更新通道归属矩阵、四级判定模型与两个离线只读核验脚本 |
 | 09 | [iOS 更新链与补丁传导归属防御分析](09-iOS-Update-Chain-Patch-Propagation-Attribution-Analysis.md) | 十层更新链路表面（公告与 CSAF、版本目录与签名时效、安装授权、分发形态、整版本与 Background Security Improvements、MDM 延期、声明式强制、状态回执、回滚与移除、外设旁路）、P1–P12 缺陷类型学、三套词表与七处换算失败、归属矩阵、18 条公开读数、四级判定模型与两个离线只读核验脚本 |
+| 10 | [iOS 设备生命周期与所有权移交归属防御分析](10-iOS-Device-Lifecycle-Ownership-Transfer-Attribution-Analysis.md) | 十层归属表面（归属登记与设备标识、入册通道、监管与命令权限、锁定与托管凭据、丢失模式与远程锁定、抹除与密钥遗留、账户生命周期、管理服务迁移、回执与读数、旁路与不可判定通道）、P1–P12 缺陷类型学、三套词表与七处换算失败、层 × 责任方 × 通道 × 证据归属矩阵、四级判定模型与两个离线只读核验脚本（51 + 23 个信号码） |
 
 Contact: telegram https://t.me/one00190
