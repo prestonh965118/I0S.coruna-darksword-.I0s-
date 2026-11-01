@@ -761,7 +761,7 @@ Xcode 会代劳这件事，但文档同时要求人可以复核：
 
 L9 也是本文对第三方供应链能说什么的下限所在：
 
-1. **是否在强制名单上不可核。** 《Privacy manifest files》第 9 行的第一个触发条件指向"SDKs that require a privacy manifest and signature"与"Upcoming third-party SDK requirements"两处引用，本轮取回的是 JS 壳（第 2 章缺口 C）。因此"某个 SDK 是否必须带清单与签名"本文不能判定。
+1. **是否在强制名单上不可核。** 《Privacy manifest files》第 9 行的第一个触发条件指向"SDKs that require a privacy manifest and signature"与"Upcoming third-party SDK requirements"两处引用，本轮取回的是 JS 壳（第 2 章缺口 C）。因此"某个 SDK 是否必须带清单与签名"本文不能判定。**口径更新**：第 12 篇本轮以同一存档路径取回该页正文，名单事实部分已闭合——强制名单落在《Third-party SDK requirements》第 124 行的说明句之后，第 125—210 行共 86 个 SDK 名、无重名，其中没有一条给出提供方身份、版本号或签名主体（读数见第 12 篇第 8 章）。这关闭的是"名单能不能被核对"，没有关闭本文的判定下限：名单只表达**义务**，一个 SDK 在名单上仍然不能推出它的代码由谁签名、版本钉在哪一刻，那是第 12 篇的 L3/L1 范围。
 2. **签名侧只有装配与分发环节的句子，没有校验环节的句子。** 存档里可核对到的签名句子有两条，都在同一页：《Adding a privacy manifest to your app or third-party SDK》第 93 行 "When you sign your XCFramework bundle, developers who incorporate the framework can see whether updates to the framework have compatible code signatures."，以及《Adding a privacy manifest to your app or third-party SDK》第 160 行 "Removing or modifying the invalid privacy manifest breaks the archived app’s signature."。前一条讲的是集成方能否看出更新后的代码签名是否相容，后一条讲的是删除或修改失效清单会破坏归档签名，两者都属于构建与分发口径。**App Store Connect 如何核验一个 SDK 的签名、核验不通过时开发者能拿到什么读数，存档里没有对应句子**；调试入口只以标题形式出现：《Adding a privacy manifest to your app or third-party SDK》第 159 行 "To troubleshoot invalid privacy manifests, see TN3181: Debugging an invalid privacy manifest."，其正文未取回（同页第 6 行的 TN3181 链接同理，见第 2 章缺口 C）。
 3. **失效清单的溯源靠邮件而不是本地文件。** 报错句在这里：
 
