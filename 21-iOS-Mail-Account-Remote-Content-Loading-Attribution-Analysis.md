@@ -39,14 +39,14 @@ lang: zh-CN
 13. [L10 公告对齐层：36 行、0 行与七个 CVE](#13-l10-公告对齐层36-行0-行与七个-cve)
 14. [L11 引用与结论层：doc.* 与十六份文档的平台坐标](#14-l11-引用与结论层doc-与十六份文档的平台坐标)
 15. [归属矩阵：十一层 × 责任方 × 三件 × 证据](#15-归属矩阵十一层--责任方--三件--证据)
-16. [公开读数：这条链路上能数出来的十三组事实](#16-公开读数这条链路上能数出来的十三组事实)
+16. [公开读数：这条链路上能数出来的十二组事实](#16-公开读数这条链路上能数出来的十二组事实)
 17. [可见性边界：这一层读者能拿到什么](#17-可见性边界这一层读者能拿到什么)
 18. [五个读数面：装配侧、内容侧、回查侧、管理侧、公告侧](#18-五个读数面装配侧内容侧回查侧管理侧公告侧)
 19. [两套判定模型：J1—J4 与 Q1—Q4](#19-两套判定模型j1j4-与-q1q4)
 20. [运营指标 O1—O10](#20-运营指标-o1o10)
 21. [只读核验脚本一：邮件账户台账逐字段审查器](#21-只读核验脚本一邮件账户台账逐字段审查器)
 22. [只读核验脚本二：远端内容加载三件差集与公告子词表比对器](#22-只读核验脚本二远端内容加载三件差集与公告子词表比对器)
-23. [三十四次实跑与全量信号覆盖验收](#23-三十四次实跑与全量信号覆盖验收)
+23. [实跑与覆盖验收](#23-实跑与覆盖验收)
 24. [十二个误区](#24-十二个误区)
 25. [常见问题](#25-常见问题)
 26. [未公开文档化边界清单](#26-未公开文档化边界清单)
@@ -272,7 +272,7 @@ lang: zh-CN
 
 ### 6.2 凭据只有一个合法资产类型
 
-收件端与发件端的凭据字段说明都是 `The identifier of an asset declaration that contains the credentials for this account to authenticate with an incoming/outgoing mail server.`（`A/device_management_accountmail_incoming.txt:9`；`A/device_management_accountmail_outgoing.txt:9`），资产类型在页末 CODE 行给出：`CredentialUserNameAndPassword`（incoming `:41`；outgoing `:35`）。脚本一 A07 据此判定：登记了凭据资产但类型不是 `CredentialUserNameAndPassword` → V3（第 124 行）。
+收件端与发件端的凭据字段说明是同一句式，只有末尾的 server 类型词不同：收件端为 `The identifier of an asset declaration that contains the credentials for this account to authenticate with an incoming mail server`（`A/device_management_accountmail_incoming.txt:9`），发件端为 `...with an outgoing mail server`（`A/device_management_accountmail_outgoing.txt:9`），资产类型在页末 CODE 行给出：`CredentialUserNameAndPassword`（incoming `:41`；outgoing `:35`）。脚本一 A07 据此判定：登记了凭据资产但类型不是 `CredentialUserNameAndPassword` → V3（第 124 行）。
 
 ### 6.3 `None` 规则是一条双向约束
 
@@ -1628,7 +1628,7 @@ END {
 ### 22.10 使用方法
 
 1. 主张台账一行一个字段，主体名在三份文件中必须完全一致；
-2. 平台矩阵按 `<文档>,<平台>,<引入版本>` 写，文档名用 22.3 的短名；
+2. 平台矩阵按 `<文档>,<平台>,<引入版本>` 写，文档名用 `C/platform-21.txt` 的短名；
 3. 公告语料保留原表头，六列顺序不要改；
 4. `bash script2.sh 台账.tsv 平台.tsv 公告.tsv` 运行，`-q` 只看汇总，`-h` 看用法；
 5. 退出码 0 表示无信号，1 表示有信号，2 表示用法或输入问题——2 不是「不齐」，是「没跑成」。
@@ -2082,7 +2082,7 @@ script2 未变 a98fde7019533a26a71aee2ae2cdf5e8
 `C/platform-21.txt` 的每一行只有 `<文档>,<平台>,<引入版本>` 三个字段；而 `AccountMail` 的系统域是 `iOS, visionOS`、用户域是 `macOS, Shared iPad`（`A/device_management_accountmail.txt:33—36`）。脚本二 Y01 只能查「账号声明有没有 iOS 行」，不能查「iOS 行落在哪个作用域」。这是**公开坐标本身的缺列**，不是脚本漏判；要补这一格，需要另一份按注册方式拆开的矩阵，本归档没有。不能由此推出：iOS 出现在平台列就说明设备注册与用户注册都能用——原文的六个注册块给出的答案并不相同。
 
 **U04 发件端的 `None` 规则没有独立码。**
-发件端文档与收件端一样写着：`If the <auth> is None, this field must be blank. Otherwise, the declaration must contain this field`（`A/device_management_accountmail_outgoing.txt:11—13`），CODE 行也有 `None`（`:37`）。但脚本一的 B07／B08 只读 `in.auth` 与 `in.cred_asset`，发件端 `out.auth=None` 与 `out.cred_asset` 的矛盾目前不产生信号。这是判据覆盖面的一处已知缺口（第 21.9 节第 1 条），补码需要新的定向夹具，本文不补一个没有实跑覆盖的码。
+发件端文档与收件端一样写着：`If the AuthenticationMethod is None, this field must be blank. Otherwise, the declaration must contain this field`（`A/device_management_accountmail_outgoing.txt:11—13`），CODE 行也有 `None`（`:37`）。但脚本一的 B07／B08 只读 `in.auth` 与 `in.cred_asset`，发件端 `out.auth=None` 与 `out.cred_asset` 的矛盾目前不产生信号。这是判据覆盖面的一处已知缺口（第 21.9 节第 1 条），补码需要新的定向夹具，本文不补一个没有实跑覆盖的码。
 
 **U05 凭据可读时点与资产引用之间没有换算。**
 钥匙串分类表把 `Mail accounts` 放在 `Accessible After first unlock` 一档（`B/apple-platform-security-guide.txt:2155—2156`），这是「首次解锁之后可读」；声明侧只给一个资产标识与资产类型（`A/device_management_accountmail_incoming.txt:9—13`）。两者回答两个问题：「引用哪个资产」与「这个资产何时可读」。台账登记前者（`in.cred_asset`／`in.cred_asset_type`），不登记后者；也不能用「首次解锁后可读」反推「这台设备已解锁」。不能由此推出：已解锁设备上的凭据一定可被任意进程读取——钥匙串还有访问控制列表。
@@ -2214,7 +2214,7 @@ script2 未变 a98fde7019533a26a71aee2ae2cdf5e8
 ### 28.3 九条归档约定
 
 1. **只收官方四类**：Apple Developer 文档 JSON、Apple Platform Security 指南文本、Apple 法律页、Apple 安全发布页；不引第三方博客、CVE 描述页或研究机构报告。
-2. **每份文件保留原始行号**：正文的 `:n` 一律指归档文件行号，不指网页行号。
+2. **每份文件保留原始行号**：正文的 `:n` 一律指归档文件行号，不指网页行号；引用英文原文时，归档里的行内代码体标记（如 `false`）按普通文字转写，其余字符逐字保留。
 3. **读数单独成表**：所有计数先进 `C/readings-21.txt`（G1—G12），正文再引用；不在正文里现算。
 4. **平台坐标单独成表**：16 份文档的 47 行坐标放 `C/platform-21.txt`，平台名与版本号逐行可核。
 5. **公告单独成表**：1,266 行放 `C/advisory-21.tsv`，六列顺序固定，不合并单元格。
